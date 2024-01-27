@@ -70,19 +70,3 @@ def demucs_ui():
         fn=demucs_audio,
         api_name="demucs",
     )
-
-
-def demucs_tab():
-    with gr.Tab("Demucs Demo", id="demucs"):
-        demucs_ui()
-
-
-if __name__ == "__main__":
-    if "interface" in locals():
-        interface.close()  # type: ignore
-
-    with gr.Blocks() as interface:
-        with gr.Tabs():
-            demucs_tab()
-
-    interface.launch(enable_queue=True)
