@@ -1,111 +1,220 @@
-# Applio
+## RVC_CLI: Retrieval-based Voice Conversion Command Line Interface
 
-Welcome to **Applio**, the ultimate voice cloning tool meticulously optimized for unrivaled power, modularity, and a user-friendly experience.
+[![Open In Collab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/blaise-tk/rvc_cli/blob/master/RVC_CLI.ipynb)
 
-[![Precompiled Versions](https://img.shields.io/badge/Precompiled%20Versions-ffffff?style=flat-square&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAALEsAACxLAaU9lqkAAAHzSURBVDhPrVFNaBNBFP5m9idJU9tE2srS5KSNlxT00AhSEEH01GMOIkpPBSmCehE99aIgVOrJgzdP6kE8qoQKEqmIV00PhRQ3jSbdTbRVm7rbnfHNJLV4lX7w3sx8733z3szDvkIIkQyCoEB2otls9vfof8B6q0a9Xu8b2V66bTSez7BguU+FhT3eQfb8Q549d4sxttVL3RNKKS3xaeEVX797GkOxHkuQZF4Ikb3zZjmcOJvP5wNFc+UUwrXFWd6Y1yK3YWlOadx12o9Y4O7cqZyDKzpA2BUy7j6bRprBWwsw/yTdLfTNwL3HaeBnB0gF4KtPp1WuEuwJ2cYYLAPDjokbF9rUOpA+IHDzYhtIUOsxCyxqjalcJdDCYrHIpLA7aPwAOiEW38dx+XoGM9cy+Lhiak7HWKKjcpVGu99+5ZL9buoR7BY9NkJE98nPo5AxCXP0C1USgGkAO8MIT76ctQ8efqAr8u+VY0ATMOg4EIcxYMMc92DlfLCkrTmYFBNfgY3Kca1RDiZdLah4PyWlEsAg2eZ219RecSomGZgRV//WbbVWq2UObb29b7RfT/FwxQZPIUoWlqQUkfHrwySTm0zauXBn6MyLVnLyquM4q0q3C14qlQY9z5uoVqtH6UyPovG57hHf9wvlcpnm8ncK/wvgD6Orstc1XrkKAAAAAElFTkSuQmCC&link=https://huggingface.co/IAHispano/applio/tree/main/Applio%20V3%20Precompiled)](https://huggingface.co/IAHispano/applio/tree/main/Applio%20V3%20Precompiled)
-![GitHub Release](https://img.shields.io/github/v/release/iahispano/applio-rvc-fork?style=flat-square)
-![GitHub Repo stars](https://img.shields.io/github/stars/iahispano/applio-rvc-fork?style=flat-square)
-![GitHub forks](https://img.shields.io/github/forks/iahispano/applio-rvc-fork?style=flat-square)
-[![Support Discord](https://img.shields.io/discord/1096877223765606521?style=flat-square)](https://discord.gg/iahispano)
-[![Issues](https://img.shields.io/github/issues/iahispano/applio-rvc-fork?style=flat-square)](https://github.com/IAHispano/Applio-RVC-Fork/issues)
-[![Open In Collab](https://img.shields.io/badge/google_colab-F9AB00?style=flat-square&logo=googlecolab&logoColor=white)](https://colab.research.google.com/github/iahispano/applio/blob/master/assets/Applio.ipynb)
+### Todo
 
-## Content Table
-- [**Installation**](#installation)
-  - [Windows](#windows)
-  - [Linux](#linux)
-  - [Using Makefile](#using-makefile-for-platforms-such-as-paperspace)
-- [**Usage**](#usage)
-  - [Windows](#windows-1)
-  - [Linux](#linux-1)
-  - [Using Makefile](#using-makefile-for-platforms-such-as-paperspace-1)
-- [**Repository Enhancements**](#repository-enhancements)
-- [**Credits**](#credits)
-  - [Contributors](#contributors)
+- Use this style for commands `python app.py infer --hop_length 128 --f0method rmvpe --input_path "input.wav" --output_path "output.wav" --pth_file "model.pth" --index_path "index_file.index"`
 
-## Installation
-Download the latest version from [GitHub Releases](https://github.com/IAHispano/Applio-RVC-Fork/releases) or use [Precompiled Versions](https://huggingface.co/IAHispano/applio/tree/main/Applio%20V3%20Precompiled).
+### Table of Contents
 
-### Windows
+1. [Installation](#installation)
+   - [Windows](#windows)
+   - [Linux](#linux)
+2. [Getting Started](#getting-started)
+   - [Inference](#inference)
+   - [Training](#training)
+   - [Additional Features](#additional-features)
+3. [API](#api)
+4. [Credits](#credits)
+
+### Installation
+
+Ensure you have the required Python packages installed by running (Python 3.9 is recommended):
+
+#### Windows
+
+Execute the [install.bat](./install.bat) file to activate a Conda environment. Subsequently, launch the application using `env/python main.py` instead of the conventional `python main.py` command.
+
+#### Linux
+
 ```bash
-./run-install.bat
+chmod +x install.sh
+./install.sh
 ```
 
-### Linux
+### Getting Started
+
+For additional information and command-line options, refer to the help command:
+
 ```bash
-chmod +x run-install.sh
-./run-install.sh
+python main.py -h
 ```
 
-### Using Makefile (for platforms such as [Paperspace](https://www.paperspace.com/))
-```
-make run-install
-```
+This command displays the available modes and their corresponding parameters, providing clarity on how to effectively use the RVC CLI.
 
-## Usage
-Visit [Applio Documentation](https://docs.applio.org/) for a detailed UI usage explanation.
+### Inference
 
-### Windows
+#### Single Inference
+
 ```bash
-./run-applio.bat
+python main.py infer f0up_key filter_radius index_rate hop_length f0method "input_path" "output_path" "pth_file" "index_path" split_audio
 ```
 
-### Linux
+- `f0up_key`: Value for f0up_key (-24 to +24)
+- `filter_radius`: Value for filter_radius (0 to 10)
+- `index_rate`: Value for index_rate (0.0 to 1.0)
+- `hop_length`: Value for hop_length (1 to 512)
+- `f0method`: Value for f0method (pm, dio, crepe, crepe-tiny, harvest, rmvpe)
+- `input_path`: Input audio path (enclosed in double quotes)
+- `output_path`: Output audio path (enclosed in double quotes)
+- `pth_file`: Path to the .pth file (enclosed in double quotes)
+- `index_path`: Path to the .index file (enclosed in double quotes)
+- `split_audio`: Value for split_audio (True or False)
+
+#### Batch Inference
+
 ```bash
-chmod +x run-applio.sh
-./run-applio.sh
+python main.py batch_infer f0up_key filter_radius index_rate hop_length f0method "input_folder_path" "output_folder_path" "pth_file" "index_path"
 ```
 
-### Using Makefile (for platforms such as [Paperspace](https://www.paperspace.com/))
+- `f0up_key`: Value for f0up_key (-24 to +24)
+- `filter_radius`: Value for filter_radius (0 to 10)
+- `index_rate`: Value for index_rate (0.0 to 1.0)
+- `hop_length`: Value for hop_length (1 to 512)
+- `f0method`: Value for f0method (pm, dio, crepe, crepe-tiny, harvest, rmvpe)
+- `input_folder_path`: Input folder path (enclosed in double quotes)
+- `output_folder_path`: Output folder path (enclosed in double quotes)
+- `pth_file`: Path to the .pth file (enclosed in double quotes)
+- `index_path`: Path to the .index file (enclosed in double quotes)
+
+#### TTS Inference
+
+```bash
+python main.py tts_infer "tts_text" "tts_voice" f0up_key filter_radius index_rate hop_length f0method "output_tts_path" "output_rvc_path" "pth_file" "index_path"
 ```
-make run-applio
+
+- `tts_text`: Text for TTS synthesis (enclosed in double quotes)
+- `tts_voice`: Voice for TTS synthesis (enclosed in double quotes)
+- `f0up_key`: Value for f0up_key (-24 to +24)
+- `filter_radius`: Value for filter_radius (0 to 10)
+- `index_rate`: Value for index_rate (0.0 to 1.0)
+- `hop_length`: Value for hop_length (1 to 512)
+- `f0method`: Value for f0method (pm, dio, crepe, crepe-tiny, harvest, rmvpe)
+- `output_tts_path`: Output TTS audio path (enclosed in double quotes)
+- `output_rvc_path`: Output RVC audio path (enclosed in double quotes)
+- `pth_file`: Path to the .pth file (enclosed in double quotes)
+- `index_path`: Path to the .index file (enclosed in double quotes)
+
+### Training
+
+#### Preprocess Dataset
+
+```bash
+python main.py preprocess "model_name" "dataset_path" sampling_rate
 ```
 
-## Repository Enhancements
+- `model_name`: Name of the model (enclosed in double quotes)
+- `dataset_path`: Path to the dataset (enclosed in double quotes)
+- `sampling_rate`: Sampling rate (32000, 40000, or 48000): Optional, default `40000`
 
-This repository has undergone significant improvements to enhance its functionality and maintainability:
+#### Extract Features
 
-- **Code Modularization:** The codebase has been restructured to follow a modular approach. This ensures better organization, readability, and ease of maintenance.
-- **Hop Length Implementation:** Special thanks to [@Mangio621](https://github.com/Mangio621/Mangio-RVC-Fork) for introducing hop length implementation. This enhancement enhances the efficiency and performance on Crepe (previously known as Mangio-Crepe).
-- **Translations to +30 Languages:** The repository now supports translations in over 30 languages, making it more accessible to a global audience.
-- **Cross-Platform Compatibility:** With multiplatform compatibility, this repository can seamlessly operate across various platforms, providing a consistent experience to users.
-- **Optimized Requirements:** The project's requirements have been fine-tuned for improved performance and resource utilization.
-- **Simple Installation:** The installation process has been streamlined, ensuring a straightforward and user-friendly experience for setup.
+```bash
+python main.py extract "model_name" rvc_version f0method hop_length sampling_rate
+```
 
-These enhancements contribute to a more robust and scalable codebase, making the repository more accessible for contributors and users alike.
+- `model_name`: Name of the model (enclosed in double quotes)
+- `rvc_version`: Version of the model (v1 or v2)
+- `f0method`: Value for f0method (pm, dio, crepe, crepe-tiny, harvest, rmvpe)
+- `hop_length`: Value for hop_length (1 to 512)
+- `sampling_rate`: Sampling rate (32000, 40000, or 48000)
 
-## Contributions
-- **Backend Contributions:** If you want to contribute to the backend, make your pull requests [here](https://github.com/blaise-tk/RVC_CLI).
-- **Frontend Contributions:** For interface or script-related contributions, feel free to contribute to this repository.
+#### Start Training
 
-We appreciate all contributions ❤️
+```bash
+python main.py train "model_name" rvc_version save_every_epoch save_only_latest save_every_weights total_epoch sampling_rate batch_size gpu pitch_guidance pretrained custom_pretrained [g_pretrained] [d_pretrained]
+```
 
-## Planned Features
-- Implement: Support for Apple Devices ([Issue Link](https://github.com/pytorch/pytorch/issues/77764))
-- Implement: rmvpe_gpu
-- Implement: Theme selector, RPC toggle & version checker
-- Implement: Overtraining detector
-- Implement: Autotune
-- Implement: Training stop
-- Fix: Model fusion
+- `model_name`: Name of the model (enclosed in double quotes)
+- `rvc_version`: Version of the model (v1 or v2)
+- `save_every_epoch`: Number of epochs after which to save the model checkpoint (1 to 50)
+- `save_only_latest`: Save only the lastest final weight (True or False)
+- `save_every_weights`: Save a weight every training save (True or False)
+- `total_epoch`: Total number of training epochs (1 to 10000)
+- `sampling_rate`: Sampling rate of the audio data (32000, 40000, or 48000): Optional, default `40000`
+- `batch_size`: Batch size, limited by GPU VRAM (4 to ∞)
+- `gpu`: GPU number (0 to ∞ separated by -)
+- `pitch_guidance`: Train with or without pitch guidance (True or False)
+- `pretrained`: Train with or without pretrained models (True or False)
+- `custom_pretrained`: Use custom pretrained models; use parameters g\_/d_pretrained (True or False)
+- `g_pretrained_path`: Path to pretrained file G, only if you have used custom_pretrained (enclosed in double quotes)
+- `d_pretrained_path`: Path to pretrained file D, only if you have used custom_pretrained (enclosed in double quotes)
 
-## Credits
-- [VITS](https://github.com/jaywalnut310/vits) by jaywalnut310
-- [Retrieval-based-Voice-Conversion-WebUI](https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI) by RVC-Project
-- [Mangio-RVC-Fork](https://github.com/Mangio621/Mangio-RVC-Fork) by Mangio621
-- [Mangio-RVC-Tweaks](https://github.com/alexlnkp/Mangio-RVC-Tweaks) by alexlnkp
-- [RVG_tts](https://github.com/Foxify52/RVG_tts) by Foxify52
-- [RMVPE](https://github.com/Dream-High/RMVPE) by Dream-High
-- [ContentVec](https://github.com/auspicious3000/contentvec/) by auspicious3000
-- [HIFIGAN](https://github.com/jik876/hifi-gan) by jik876
-- [Gradio](https://github.com/gradio-app/gradio) by gradio-app
-- [FFmpeg](https://github.com/FFmpeg/FFmpeg) by FFmpeg
-- [audio-slicer](https://github.com/openvpi/audio-slicer) by openvpi
-- [Ilaria-Audio-Analyzer](https://github.com/TheStingerX/Ilaria-Audio-Analyzer) by TheStingerX
-- [gradio-screen-recorder](https://huggingface.co/spaces/gstaff/gradio-screen-recorder) by gstaff
-- [RVC_CLI](https://github.com/blaise-tk/RVC_CLI) by blaise-tk
+#### Generate Index File
 
-### Contributors
-<a href="https://github.com/IAHispano/Applio/graphs/contributors" target="_blank">
-  <img src="https://contrib.rocks/image?repo=IAHispano/Applio" />
-</a>
+```bash
+python main.py index "model_name" rvc_version
+```
+
+- `model_name`: Name of the model (enclosed in double quotes)
+- `rvc_version`: Version of the model (v1 or v2)
+
+### Additional Features
+
+#### Model Information
+
+```bash
+python main.py model_information "pth_path"
+```
+
+- `pth_path`: Path to the .pth file (enclosed in double quotes)
+
+#### Model Fusion
+
+```bash
+python main.py model_fusion "model_name" "pth_path_1" "pth_path_2"
+```
+
+- `model_name`: Name of the model (enclosed in double quotes)
+- `pth_path_1`: Path to the first .pth file (enclosed in double quotes)
+- `pth_path_2`: Path to the second .pth file (enclosed in double quotes)
+
+#### Launch TensorBoard
+
+```bash
+python main.py tensorboard
+```
+
+#### Download Models
+
+Run the download script with the following command:
+
+```bash
+python main.py download "model_link"
+```
+
+- `model_link`: Link of the model (enclosed in double quotes; Google Drive or Hugging Face)
+
+### API
+
+To use the RVC CLI via the API, you can utilize the provided `api.py` script. Make API requests to the following endpoints:
+
+- **Infer**: `/infer`
+- **Batch Infer**: `/batch_infer`
+- **TTS**: `/tts`
+- **Preprocess**: `/preprocess`
+- **Extract**: `/extract`
+- **Train**: `/train`
+- **Index**: `/index`
+- **Model Information**: `/model_information`
+- **Model Fusion**: `/model_fusion`
+- **Tensorboard**: `/tensorboard`
+- **Download**: `/download`
+
+You can make POST requests to these endpoints with the required parameters in the JSON format.
+
+Example using `curl` for Infer:
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"f0up_key": 0, "filter_radius": 5, "index_rate": 0.5, "hop_length": 256, "f0method": "rmvpe", "input_path": "input.wav", "output_path": "output.wav", "pth_file": "model.pth", "index_path": "index_file.index", "split_audio": false}' http://localhost:5000/infer
+```
+
+### Credits
+
+The RVC CLI is built on the foundations of the following projects:
+
+- [Mangio-RVC-Fork](https://github.com/Mangio621/Mangio-RVC-Fork)
+- [Retrieval-based-Voice-Conversion-WebUI](https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI)
+
+We acknowledge and appreciate the contributions of the respective authors and communities involved in these projects.
