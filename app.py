@@ -41,15 +41,13 @@ with gr.Blocks(theme="NoCrypt/miku", title="Applio RVC") as Applio:
 
     with gr.Tab(i18n("TTS")):
         tts_tab()
-
-
-with gr.Tab(i18n("Download")):
+        
+    with gr.Tab(i18n("Download")):
         download_tab()
-
+        
     with gr.Tab(i18n("Report a Bug")):
         report_tab()
-
-    
+        
     with gr.Tab(i18n("Settings")):
         presence_tab()
 
