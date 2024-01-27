@@ -42,18 +42,6 @@ with gr.Blocks(theme="NoCrypt/miku", title="Applio RVC") as Applio:
     with gr.Tab(i18n("TTS")):
         tts_tab()
 
-    with gr.Tab(i18n("Extra")):
-        extra_tab()
-
-    with gr.Tab(i18n("Settings")):
-        presence_tab()
-    
-    with gr.Tab(i18n("demucs")):
-        download_tab()
-
-    with gr.Tab(i18n("Report a Bug")):
-        demucs_tab()
-
     with gr.Tab(i18n("Settings")):
         presence_tab()
 
