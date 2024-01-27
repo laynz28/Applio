@@ -21,7 +21,7 @@ from assets.discord_presence import RPCManager
 
 RPCManager.start_presence()
 
-with gr.Blocks(theme="ParityError/Interstellar", title="Applio") as Applio:
+with gr.Blocks(theme="NoCrypt/miku", title="Applio RVC") as Applio:
     gr.Markdown("# Applio")
     gr.Markdown(
         i18n(
@@ -45,11 +45,14 @@ with gr.Blocks(theme="ParityError/Interstellar", title="Applio") as Applio:
     with gr.Tab(i18n("Extra")):
         extra_tab()
 
-    with gr.Tab(i18n("Download")):
+    with gr.Tab(i18n("Settings")):
+        presence_tab()
+    
+    with gr.Tab(i18n("demucs")):
         download_tab()
 
     with gr.Tab(i18n("Report a Bug")):
-        report_tab()
+        demucs_tab()
 
     with gr.Tab(i18n("Settings")):
         presence_tab()
