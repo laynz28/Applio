@@ -106,6 +106,6 @@ We appreciate all contributions ❤️
 - [RVC_CLI](https://github.com/blaise-tk/RVC_CLI) by blaise-tk
 
 ### Contributors
-<a href="https://github.com/IAHispano/Applio/graphs/contributors" target="_blank">
-  <img src="https://contrib.rocks/image?repo=IAHispano/Applio" />
+<a href="https://github.com/laynz28/Applio/graphs/contributors" target="_blank">
+  <img src="https://contrib.rocks/image?repo=laynz28/Applio" />
 </a>
