@@ -23,16 +23,16 @@ Welcome to **Applio**, the ultimate voice cloning tool meticulously optimized fo
 - [**Credits**](#credits)
   - [Contributors](#contributors)
 
-  - [Spaces](#Space)
+  - [Spaces](#Spaces)
 
 ## Installation
 Download the latest version from [GitHub Releases](https://github.com/IAHispano/Applio-RVC-Fork/releases) or use [Precompiled Versions](https://huggingface.co/IAHispano/applio/tree/main/Applio%20V3%20Precompiled).
 
 
-## Space
-```
+## Spaces
+
 [Space](https://huggingface.co/spaces/Hev832/Applio)
-```
+
 
 ### Windows
 ```bash
