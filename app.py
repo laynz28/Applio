@@ -21,7 +21,7 @@ from assets.discord_presence import RPCManager
 
 RPCManager.start_presence()
 
-with gr.Blocks(theme="NoCrypt/miku", title="Applio RVC") as Applio:
+with gr.Blocks(theme="Hev832/Hev", title="Applio RVC") as Applio:
     gr.Markdown("# Applio")
     gr.Markdown(
         i18n(
